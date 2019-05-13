@@ -27,6 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+LOGIN_URL = "/login/"
+LOGOUT_REDIRECT_URL = "/"
 
 # Application definition
 
@@ -38,6 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'twitterclone',
+    'twitteruser',
+    'tweet',
+    'notification',
+    'authentication',
 ]
 
 MIDDLEWARE = [
