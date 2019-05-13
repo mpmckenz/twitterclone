@@ -22,8 +22,6 @@ def signup(request):
                 password=data["password"],
             )
             login(request, user)
-            # Author model
-            Author.objects.create(name=data["name"], user=user)
             return HttpResponseRedirect(reverse("homepage"))
     else:
         form = SignupForm()
