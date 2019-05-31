@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<style>
+  .button {
+    color: white;
+    background-color: gray;
+    padding: 0.5% 0.8%;
+    cursor: pointer;
+    font-size: 1em;
+    text-decoration: none;
+  }
+  .button:hover {
+    background-color: black;
+  }
+  .card {
+    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    width: 10%;
+    border-radius: 5px;
+    padding: 2%;
+    background-color: lightcyan;
+  }
+  .card:hover {
+    box-shadow: 0 8px 30px 0 rgba(0, 0, 0, 0.2);
+  }
+</style>
+{% if tweets%}
+<h1>Yo Dawg, these peeps hit you up on the grand scale!</h1>
+{% for tweet in tweets %}
+<div class="card">
+  <a href="/{{ tweet.username }}">{{ tweet.username }}</a>
+  <br />
+  <a href="/{{ tweet.id }}">{{ tweet.time }}</a>
+  <p>{{ tweet.message }}</p>
+</div>
+{% endfor %} {%else%}
+<h2>Nothin' goin down in your DM, time to blow up the spot and get noticed!</h2>
+{% endif %}
+<br />
+<a class="button" href="/">Home</a>

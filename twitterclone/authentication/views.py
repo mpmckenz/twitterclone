@@ -3,20 +3,10 @@ from django.shortcuts import render
 from twitterclone.twitteruser.models import TwitterUser
 from twitterclone.authentication.forms import SignupForm, LoginForm
 
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate, logout
 from django.shortcuts import reverse
 from django.http import HttpResponseRedirect
-
-from twitterclone.tweet.models import Tweet
-
-
-@login_required()
-def index(request):
-    html = 'index.html'
-    items = {"data": TwitterUser.objects.all(), 'tweet': Tweet.objects.all()}
-    return render(request, html, items)
 
 
 def signup(request):

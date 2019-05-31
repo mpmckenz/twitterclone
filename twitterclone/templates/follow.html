@@ -1,0 +1,51 @@
+<style>
+  ul {
+    list-style: none;
+    margin: 0 2px;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+  }
+  a {
+    display: inline;
+  }
+  .button {
+    color: white;
+    background-color: gray;
+    padding: 0.5% 0.8%;
+    cursor: pointer;
+    font-size: 1em;
+    text-decoration: none;
+  }
+  .button:hover {
+    background-color: black;
+  }
+  .card {
+    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    width: 10%;
+    border-radius: 5px;
+    padding: 2%;
+    background-color: lightcyan;
+  }
+  .card:hover {
+    box-shadow: 0 8px 30px 0 rgba(0, 0, 0, 0.2);
+  }
+  .container {
+    padding: 2px 16px;
+  }
+</style>
+<body>
+  <ul>
+    <a class="button" href="/">Home</a>
+    <a class="button" href="compose/">Tweet</a>
+    <a class="button" href="notifications/">Notifications: 0</a>
+    <a class="button" href="{{ request.user }}/">My Profile</a>
+  </ul>
+  <h1>{{ header }}</h1>
+  {% if is_following %}
+  <p>New follower added!</p>
+  {% else %}
+  <p>Follower removed!</p>
+  {% endif %}
+</body>

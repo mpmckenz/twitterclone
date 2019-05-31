@@ -29,7 +29,7 @@
         width: 10%;
         border-radius: 5px;
         padding: 2%;
-        background-color: lightcyan;
+        background-color: lightgray;
       }
       .card:hover {
         box-shadow: 0 8px 30px 0 rgba(0, 0, 0, 0.2);
@@ -43,35 +43,37 @@
     <ul>
       <a class="button" href="/">Home</a>
       <a class="button" href="/compose/">Tweet</a>
-      <a class="button" href="/notifications/"
-        >Notifications: {{ notification_count }}</a
-      >
+      <a class="button" href="/notifications/">Notifications: 0</a>
       <a class="button" href="/{{ request.user }}/">My Profile</a>
     </ul>
     <hr />
     <div class="card">
       <div container="container">
         <h4>
-          <b>{{ user.username }}</b>
+          <b>{{ other_user }}</b>
         </h4>
         <h4>
-          <a href="{{ user.username }}/">@{{ user.username }}</a>
+          <a href="/{{ other_user }}/">@{{ other_user }}</a>
         </h4>
         <p>Tweets: {{ tweet_count }}</p>
         <p>Following: {{ follow_count }}</p>
+        <a class="button" href="/follow/{{ other_user.username }}"
+          >Follow / Unfollow</a
+        >
       </div>
     </div>
     <br />
-    <a class="button" href="/logout/">Logout</a>
-    <br />
-    <br />
-    {% for tweet in followers_tweets %}
+    {%for item in tweets%}
     <div class="card">
-      <a href="{{ tweet.username }}">{{ tweet.username }}</a
-      ><br />
-      <a href="{{ tweet.id }}">{{ tweet.time }}</a>
-      <p>{{ tweet.message }}</p>
+      <a href="/{{ item.username }}">
+        {{ item.username }}
+        <br />
+      </a>
+      <a href="/{{ item.id }}/">
+        {{ item.time }}
+      </a>
+      {{ item.message }}
     </div>
-    {% endfor %}
+    {%endfor%}
   </body>
 </html>
