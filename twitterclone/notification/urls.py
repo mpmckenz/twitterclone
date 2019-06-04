@@ -1,10 +1,10 @@
 from django.contrib import admin
 from django.urls import path
 from twitterclone.notification.models import Notification
-from twitterclone.notification.views import notification
+from twitterclone.notification.views import Notifications
 
-admin.site.register(Notification)
+# admin.site.register(Notification)
 
 urlpatterns = [
-    path("notifications/", notification)
+    path("notifications/", Notifications.as_view())
 ]

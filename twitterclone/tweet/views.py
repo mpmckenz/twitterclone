@@ -4,10 +4,16 @@ from twitterclone.tweet.forms import AddTweetForm
 from twitterclone.tweet.models import Tweet
 from twitterclone.notification.views import tweet_notif_checker
 
+from django.views import View
 
-def composetweet(request):
-    html = 'compose.html'
-    if request.method == "POST":
+
+class ComposeTweet(View):
+    def get(self, request):
+        html = 'compose.html'
+        form = AddTweetForm()
+        return render(request, html, {'form': form})
+
+    def post(self, request):
         form = AddTweetForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
@@ -15,15 +21,12 @@ def composetweet(request):
                 username=request.user.twitteruser,
                 message=data["message"],
             )
-            # look in message and see if @ username is used and that's when a notification counts gets added
             tweet_notif_checker(tweet)
             return redirect('/')
-    else:
-        form = AddTweetForm()
-    return render(request, html, {'form': form})
 
 
-def specifictweetview(request, id):
-    html = 'tweet.html'
-    tweets = Tweet.objects.filter(pk=id)
-    return render(request, html, {'tweets': tweets})
+class SpecificTweetView(View):
+    def get(self, request, id):
+        html = 'tweet.html'
+        tweets = Tweet.objects.filter(pk=id)
+        return render(request, html, {'tweets': tweets})
